@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.aliyun.com/SCHEMAS/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.aliyun.com/SCHEMAS/SETTINGS/1.0.0 http://maven.aliyun.com/SCHEMAS/SETTINGS/1.0.0">
+    <localRepository>d:/Lunwen/rental-backend/repository</localRepository>
+    <mirrors>
+        <mirror>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <mirrorOf>central</mirrorOf>
+        </mirror>
+    </mirrors>
+</settings>
