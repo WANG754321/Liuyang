@@ -206,7 +206,7 @@ npm run dev
 
 ### 1) 基础信息
 - 操作系统（Windows/macOS）
-- IDEA 版本（如：IDEA 2021）
+- IDEA 版本（如：IDEA 2025）
 - JDK 版本（建议 Java 8）
 - 项目类型（Maven Web 工程 / 普通 Web 工程）
 
@@ -218,6 +218,7 @@ npm run dev
 - 数据交互与认证：基础表单提交 + JDBC + Session
 
 ### 3) 当前状态（排错必备）
+- 是否已安装并确认路径：MySQL、Tomcat 8.x（例如你当前已完成此步骤）
 - 你已完成到哪一步（例如：Tomcat 已安装，但 IDEA 无法启动项目）
 - 完整报错文本（或截图）
 - `pom.xml`（如果是 Maven 项目）
@@ -234,5 +235,5 @@ npm run dev
 ### 可直接复制发送的模板
 
 ```text
-请按从0到1步骤帮我在 IDEA 2021 配置 Java Web 项目，技术栈是 JSP+Servlet+JavaBean，服务器 Tomcat 8.5，数据库 MySQL 8.0，使用 JDBC 和 Session。我的系统是___，JDK是___，项目类型是___，当前报错是___。
+请按从0到1步骤帮我在 IDEA 2025 配置 Java Web 项目，技术栈是 JSP+Servlet+JavaBean，服务器 Tomcat 8.5，数据库 MySQL 8.0，使用 JDBC 和 Session。我的系统是___，JDK是___，项目类型是___；我已经下载并确认了 MySQL 和 Tomcat8 的安装位置；当前报错是___。
 ```
