@@ -10,6 +10,11 @@ import java.io.IOException;
 @WebFilter("/*")
 public class AuthFilter implements Filter {
     @Override
+    public void init(FilterConfig filterConfig) {
+        // no-op
+    }
+
+    @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
@@ -39,6 +44,11 @@ public class AuthFilter implements Filter {
         }
 
         chain.doFilter(request, response);
+    }
+
+    @Override
+    public void destroy() {
+        // no-op
     }
 
     private boolean isPublic(String path) {
