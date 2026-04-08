@@ -1,7 +1,9 @@
 # 小区租房系统
 
 ## 项目简介
-基于 Spring Boot 2.7 + Vue 3 + MySQL 8.0 的最小化技术栈小区租房系统。
+本目录包含两个教学示例项目：
+- 基于 Spring Boot 2.7 + Vue 3 + MySQL 8.0 的小区租房系统
+- 基于 JSP + Servlet + JavaBean + JDBC + MySQL 的图书借阅系统（`library-jsp-servlet`）
 
 ## 技术栈
 
