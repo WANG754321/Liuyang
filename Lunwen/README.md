@@ -199,3 +199,40 @@ npm run dev
 
 ### Q: 登录提示"用户名或密码错误"
 **A:** 确保数据库已初始化，使用默认账号登录。
+
+## 在 IDEA 中配置 JSP+Servlet+JavaBean（Tomcat 8.5 + MySQL 8.0）时，如何高效描述问题
+
+如果你需要我帮助你在 IDEA 里完成环境搭建与排错，请按下面格式提供信息。
+
+### 1) 基础信息
+- 操作系统（Windows/macOS）
+- IDEA 版本（如：IDEA 2021）
+- JDK 版本（建议 Java 8）
+- 项目类型（Maven Web 工程 / 普通 Web 工程）
+
+### 2) 目标技术栈
+- 服务器：Tomcat 8.5
+- 数据库：MySQL 8.0
+- 后端：JSP + Servlet + JavaBean
+- 前端：HTML5 + CSS3 + JavaScript + Bootstrap
+- 数据交互与认证：基础表单提交 + JDBC + Session
+
+### 3) 当前状态（排错必备）
+- 你已完成到哪一步（例如：Tomcat 已安装，但 IDEA 无法启动项目）
+- 完整报错文本（或截图）
+- `pom.xml`（如果是 Maven 项目）
+- 数据库连接配置（可隐藏密码）
+
+### 4) 我会按这个执行清单协助你
+- IDEA 项目结构配置
+- Tomcat 8.5 本地服务器配置
+- MySQL 8.0 驱动与 JDBC 连接配置
+- Web Artifact / 部署配置
+- Session 登录最小可运行验证
+- 常见报错排查（端口、驱动、字符集、时区、权限）
+
+### 可直接复制发送的模板
+
+```text
+请按从0到1步骤帮我在 IDEA 2021 配置 Java Web 项目，技术栈是 JSP+Servlet+JavaBean，服务器 Tomcat 8.5，数据库 MySQL 8.0，使用 JDBC 和 Session。我的系统是___，JDK是___，项目类型是___，当前报错是___。
+```
