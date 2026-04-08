@@ -49,10 +49,6 @@ public class UserDao {
         }
     }
 
-    public int createReaderByAdmin(String username, String hashedPassword) throws SQLException {
-        return createReader(username, hashedPassword);
-    }
-
     public int deleteReader(Long id) throws SQLException {
         String sql = "DELETE FROM user WHERE id = ? AND role = 0";
         try (Connection conn = DBUtil.getConnection();

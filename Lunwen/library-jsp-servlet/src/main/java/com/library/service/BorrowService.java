@@ -97,4 +97,11 @@ public class BorrowService {
     public List<BorrowRecord> listOverdue() throws SQLException {
         return borrowRecordDao.listOverdue();
     }
+
+    public boolean markReminded(Long recordId) throws SQLException {
+        if (recordId == null) {
+            return false;
+        }
+        return borrowRecordDao.markReminded(recordId) > 0;
+    }
 }

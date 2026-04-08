@@ -1,6 +1,16 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.library.model.Book" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%! private String esc(Object v){
+    if (v == null) return "";
+    String s = String.valueOf(v);
+    return s.replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+            .replace("\"", "&quot;")
+            .replace("'", "&#39;");
+} %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -12,8 +22,8 @@
 <body>
 <jsp:include page="/WEB-INF/navbar.jspf"/>
 <div class="container">
-    <% if (request.getParameter("msg") != null) { %><div class="alert alert-success"><%= request.getParameter("msg") %></div><% } %>
-    <% if (request.getParameter("error") != null) { %><div class="alert alert-danger"><%= request.getParameter("error") %></div><% } %>
+    <c:if test="${not empty param.msg}"><div class="alert alert-success"><c:out value="${param.msg}"/></div></c:if>
+    <c:if test="${not empty param.error}"><div class="alert alert-danger"><c:out value="${param.error}"/></div></c:if>
 
     <div class="card mb-3">
         <div class="card-body">
@@ -42,10 +52,10 @@
                 <input type="hidden" name="action" value="update">
                 <input type="hidden" name="id" value="<%= b.getId() %>">
                 <td><%= b.getId() %></td>
-                <td><input class="form-control form-control-sm" name="isbn" value="<%= b.getIsbn() %>" required></td>
-                <td><input class="form-control form-control-sm" name="name" value="<%= b.getName() %>" required></td>
-                <td><input class="form-control form-control-sm" name="author" value="<%= b.getAuthor() %>" required></td>
-                <td><input class="form-control form-control-sm" name="publisher" value="<%= b.getPublisher() %>" required></td>
+                <td><input class="form-control form-control-sm" name="isbn" value="<%= esc(b.getIsbn()) %>" required></td>
+                <td><input class="form-control form-control-sm" name="name" value="<%= esc(b.getName()) %>" required></td>
+                <td><input class="form-control form-control-sm" name="author" value="<%= esc(b.getAuthor()) %>" required></td>
+                <td><input class="form-control form-control-sm" name="publisher" value="<%= esc(b.getPublisher()) %>" required></td>
                 <td><input class="form-control form-control-sm" type="number" name="stock" min="0" value="<%= b.getStock() %>" required></td>
                 <td class="d-flex gap-2">
                     <button class="btn btn-sm btn-warning" type="submit">保存</button>

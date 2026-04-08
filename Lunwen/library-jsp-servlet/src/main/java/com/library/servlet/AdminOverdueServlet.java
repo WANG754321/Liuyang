@@ -25,7 +25,17 @@ public class AdminOverdueServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        resp.sendRedirect(req.getContextPath() + "/admin/overdue?msg=已标记人工提醒完成");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        String idStr = req.getParameter("recordId");
+        if (idStr == null) {
+            resp.sendRedirect(req.getContextPath() + "/admin/overdue?error=缺少记录ID");
+            return;
+        }
+        try {
+            boolean ok = borrowService.markReminded(Long.parseLong(idStr));
+            resp.sendRedirect(req.getContextPath() + "/admin/overdue?msg=" + (ok ? "已标记人工提醒完成" : "标记失败"));
+        } catch (SQLException e) {
+            throw new ServletException("提醒标记失败", e);
+        }
     }
 }

@@ -18,10 +18,10 @@ mysql -u root -p < sql/init.sql
 ```
 
 ## 运行方式
-1. 配置数据库连接（默认读取 JVM 参数，默认值：
-   - `db.url=jdbc:mysql://localhost:3306/library_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai`
-   - `db.user=root`
-   - `db.password=root`）
+1. 配置数据库连接（读取 JVM 参数或环境变量）：
+   - `db.url`（默认：`jdbc:mysql://localhost:3306/library_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai`）
+   - `db.user` 或 `DB_USER`（必填）
+   - `db.password` 或 `DB_PASSWORD`（必填）
 2. 打包：
 ```bash
 mvn clean package

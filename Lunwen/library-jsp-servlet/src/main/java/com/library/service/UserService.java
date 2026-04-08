@@ -15,8 +15,7 @@ public class UserService {
         if (user == null) {
             return null;
         }
-        String hashed = PasswordUtil.hash(password);
-        return hashed.equals(user.getPassword()) ? user : null;
+        return PasswordUtil.verifyPassword(password, user.getPassword()) ? user : null;
     }
 
     public boolean registerReader(String username, String password) throws SQLException {
@@ -26,7 +25,7 @@ public class UserService {
         if (userDao.findByUsername(username.trim()) != null) {
             return false;
         }
-        return userDao.createReader(username.trim(), PasswordUtil.hash(password)) > 0;
+        return userDao.createReader(username.trim(), PasswordUtil.hashPassword(password)) > 0;
     }
 
     public boolean changePassword(Long userId, String oldPassword, String newPassword) throws SQLException {
@@ -34,10 +33,10 @@ public class UserService {
         if (user == null || newPassword == null || newPassword.length() < 6) {
             return false;
         }
-        if (!PasswordUtil.hash(oldPassword).equals(user.getPassword())) {
+        if (!PasswordUtil.verifyPassword(oldPassword, user.getPassword())) {
             return false;
         }
-        return userDao.updatePassword(userId, PasswordUtil.hash(newPassword)) > 0;
+        return userDao.updatePassword(userId, PasswordUtil.hashPassword(newPassword)) > 0;
     }
 
     public boolean adminAddReader(String username, String password) throws SQLException {

@@ -1,6 +1,16 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.library.model.BorrowRecord" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%! private String esc(Object v){
+    if (v == null) return "";
+    String s = String.valueOf(v);
+    return s.replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+            .replace("\"", "&quot;")
+            .replace("'", "&#39;");
+} %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -12,8 +22,8 @@
 <body>
 <jsp:include page="/WEB-INF/navbar.jspf"/>
 <div class="container">
-    <% if (request.getParameter("msg") != null) { %><div class="alert alert-success"><%= request.getParameter("msg") %></div><% } %>
-    <% if (request.getParameter("error") != null) { %><div class="alert alert-danger"><%= request.getParameter("error") %></div><% } %>
+    <c:if test="${not empty param.msg}"><div class="alert alert-success"><c:out value="${param.msg}"/></div></c:if>
+    <c:if test="${not empty param.error}"><div class="alert alert-danger"><c:out value="${param.error}"/></div></c:if>
 
     <div class="card mb-3">
         <div class="card-body">
@@ -40,8 +50,8 @@
                 %>
                 <tr>
                     <td><%= r.getId() %></td>
-                    <td><%= r.getUsername() %></td>
-                    <td><%= r.getBookName() %></td>
+                    <td><%= esc(r.getUsername()) %></td>
+                    <td><%= esc(r.getBookName()) %></td>
                     <td><%= r.getBorrowTime() %></td>
                     <td><%= r.getReturnDeadline() %></td>
                     <td>

@@ -1,6 +1,16 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.library.model.Book" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%! private String esc(Object v){
+    if (v == null) return "";
+    String s = String.valueOf(v);
+    return s.replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+            .replace("\"", "&quot;")
+            .replace("'", "&#39;");
+} %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -12,15 +22,15 @@
 <body>
 <jsp:include page="/WEB-INF/navbar.jspf"/>
 <div class="container">
-    <% if (request.getParameter("error") != null) { %>
-    <div class="alert alert-danger"><%= request.getParameter("error") %></div>
-    <% } %>
-    <% if (request.getParameter("msg") != null) { %>
-    <div class="alert alert-success"><%= request.getParameter("msg") %></div>
-    <% } %>
+    <c:if test="${not empty param.error}">
+        <div class="alert alert-danger"><c:out value="${param.error}"/></div>
+    </c:if>
+    <c:if test="${not empty param.msg}">
+        <div class="alert alert-success"><c:out value="${param.msg}"/></div>
+    </c:if>
     <form class="row g-2 mb-3" method="get" action="${pageContext.request.contextPath}/books">
         <div class="col-md-8">
-            <input class="form-control" name="q" placeholder="按书名或作者搜索" value="<%= request.getParameter("q") == null ? "" : request.getParameter("q") %>">
+            <input class="form-control" name="q" placeholder="按书名或作者搜索" value="<c:out value='${param.q}'/>">
         </div>
         <div class="col-md-4">
             <button class="btn btn-primary" type="submit">搜索</button>
@@ -40,10 +50,10 @@
         %>
         <tr>
             <td><%= b.getId() %></td>
-            <td><%= b.getIsbn() %></td>
-            <td><%= b.getName() %></td>
-            <td><%= b.getAuthor() %></td>
-            <td><%= b.getPublisher() %></td>
+            <td><%= esc(b.getIsbn()) %></td>
+            <td><%= esc(b.getName()) %></td>
+            <td><%= esc(b.getAuthor()) %></td>
+            <td><%= esc(b.getPublisher()) %></td>
             <td><%= b.getStock() %></td>
             <td><a class="btn btn-sm btn-outline-primary" href="${pageContext.request.contextPath}/book?id=<%= b.getId() %>">详情</a></td>
         </tr>

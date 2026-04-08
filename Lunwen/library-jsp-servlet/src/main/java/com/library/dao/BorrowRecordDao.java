@@ -101,6 +101,15 @@ public class BorrowRecordDao {
         }
     }
 
+    public int markReminded(Long id) throws SQLException {
+        String sql = "UPDATE borrow_record SET reminded = 1, reminder_time = NOW() WHERE id = ? AND is_return = 0";
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, id);
+            return ps.executeUpdate();
+        }
+    }
+
     private BorrowRecord mapRecord(ResultSet rs) throws SQLException {
         BorrowRecord r = new BorrowRecord();
         r.setId(rs.getLong("id"));

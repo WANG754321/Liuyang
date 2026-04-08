@@ -1,6 +1,16 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.library.model.BorrowRecord" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%! private String esc(Object v){
+    if (v == null) return "";
+    String s = String.valueOf(v);
+    return s.replace("&", "&amp;")
+            .replace("<", "&lt;")
+            .replace(">", "&gt;")
+            .replace("\"", "&quot;")
+            .replace("'", "&#39;");
+} %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -12,9 +22,9 @@
 <body>
 <jsp:include page="/WEB-INF/navbar.jspf"/>
 <div class="container">
-    <% if (request.getParameter("error") != null) { %>
-    <div class="alert alert-danger"><%= request.getParameter("error") %></div>
-    <% } %>
+    <c:if test="${not empty param.error}">
+        <div class="alert alert-danger"><c:out value="${param.error}"/></div>
+    </c:if>
     <div class="row">
         <div class="col-md-5">
             <div class="card mb-3">
@@ -41,7 +51,7 @@
                         %>
                         <tr>
                             <td><%= r.getId() %></td>
-                            <td><%= r.getBookName() %></td>
+                            <td><%= esc(r.getBookName()) %></td>
                             <td><%= r.getBorrowTime() %></td>
                             <td><%= r.getReturnDeadline() %></td>
                             <td><%= r.getIsReturn() == 1 ? "已归还" : "未归还" %></td>
